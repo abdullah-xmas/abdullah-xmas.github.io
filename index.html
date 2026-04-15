@@ -169,6 +169,7 @@
       color:#fff;
       font-weight:700;
       white-space:nowrap;
+      flex-shrink:0;
     }
 
     section{padding:92px 0}
@@ -360,7 +361,11 @@
     }
     .fade-left{left:0;background:linear-gradient(90deg, rgba(7,11,22,1) 0%, rgba(7,11,22,0) 100%)}
     .fade-right{right:0;background:linear-gradient(270deg, rgba(7,11,22,1) 0%, rgba(7,11,22,0) 100%)}
-    .marquee{overflow:hidden;width:100%}
+    .marquee{
+      overflow:hidden;
+      width:100%;
+      touch-action:pan-y;
+    }
     .marquee-track{
       display:flex;
       width:max-content;
@@ -387,6 +392,15 @@
       border-radius:22px;
       cursor:pointer;
     }
+    .thumb img,
+    .thumb-card img,
+    .extra-card img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+
     .main-grid,
     .ba-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
     .extra-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
@@ -408,14 +422,10 @@
     }
 
     .thumb-card:hover .thumb-media {
-   transform: scale(1.03);
-
-   /* Slightly sharper on hover */
-   filter: contrast(1) brightness(1.05) saturate(1);
-
-    box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+      transform: scale(1.03);
+      filter: contrast(1) brightness(1.05) saturate(1);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.35);
     }
-
 
     .ba-card{
       position:relative;
@@ -423,10 +433,12 @@
       aspect-ratio:16/9;
       min-height:220px;
       user-select:none;
-      touch-action:none;
       -webkit-user-select:none;
       background:#060a15;
       cursor:ew-resize;
+      overflow:hidden;
+      touch-action:pan-y;
+      -webkit-user-drag:none;
     }
     .ba-card img{
       user-select:none;
@@ -461,6 +473,7 @@
       width:100%;
       height:100%;
       object-fit:cover;
+      background:#060a15;
     }
     .ba-overlay{
       overflow:hidden;
@@ -637,6 +650,10 @@
 
     @media (max-width:760px){
       section{padding:74px 0}
+      .topbar{
+        top:8px;
+        padding-top:10px;
+      }
       .nav{
         border-radius:22px;
         padding:12px 14px;
@@ -649,7 +666,10 @@
         text-overflow:ellipsis;
       }
       .brand-mark{width:38px;height:38px;border-radius:12px;font-size:12px}
-      .nav-cta{padding:9px 12px;font-size:.88rem}
+      .nav-cta{
+        padding:9px 12px;
+        font-size:.88rem;
+      }
       .hero{min-height:auto}
       .hero-stats{grid-template-columns:1fr}
       .main-grid,.extra-grid,.ba-grid{grid-template-columns:1fr}
@@ -663,6 +683,91 @@
       .section-title{font-size:clamp(1.8rem, 8vw, 2.45rem)}
       .section-subtitle{font-size:.98rem}
       .ba-handle{width:42px;height:42px}
+      .window-bar{
+        margin-bottom:12px;
+      }
+      .window-chip{
+        font-size:.72rem;
+        padding:7px 10px;
+      }
+      .marquee-track{
+        gap:14px;
+        padding:4px 14px;
+      }
+      .ba-card{
+        min-height:180px;
+        aspect-ratio:16/10;
+        cursor:default;
+      }
+      .ba-base img,
+      .ba-overlay img{
+        object-fit:contain;
+      }
+    }
+
+    @media (max-width:520px){
+      .container{
+        width:min(94%, var(--max));
+      }
+      .nav{
+        padding:10px 12px;
+      }
+      .brand{
+        gap:10px;
+      }
+      .brand-text strong{
+        max-width:110px;
+        font-size:.92rem;
+      }
+      .nav-cta{
+        padding:8px 10px;
+        font-size:.82rem;
+        border-radius:12px;
+      }
+      .hero-copy h1{
+        max-width:100%;
+      }
+      .hero-copy p{
+        font-size:.96rem;
+      }
+      .btn,
+      .btn-outline{
+        width:100%;
+        padding:14px 18px;
+      }
+      .thumb{
+        width:240px;
+      }
+      .thumb-card,
+      .extra-card,
+      .ba-card{
+        border-radius:22px;
+      }
+      .slider-shell{
+        border-radius:22px;
+      }
+      .lightbox{
+        padding:14px;
+      }
+      .lightbox-inner{
+        padding:10px;
+        border-radius:20px;
+      }
+      .lightbox-frame{
+        border-radius:14px;
+      }
+      .faq-item,
+      .contact-item{
+        padding:18px;
+      }
+      .ba-card{
+        min-height:165px;
+      }
+      .ba-handle{
+        width:38px;
+        height:38px;
+        font-size:15px;
+      }
     }
   </style>
 </head>
@@ -937,6 +1042,10 @@
       const images = card.querySelectorAll('img');
 
       let activePointerId = null;
+      let startX = 0;
+      let startY = 0;
+      let isDragging = false;
+      let dragLocked = false;
 
       images.forEach((img) => {
         img.setAttribute('draggable', 'false');
@@ -949,45 +1058,69 @@
         x = Math.max(0, Math.min(x, rect.width));
         const percent = (x / rect.width) * 100;
         const rightInset = 100 - percent;
+
         overlay.style.clipPath = `inset(0 ${rightInset}% 0 0)`;
         overlay.style.webkitClipPath = `inset(0 ${rightInset}% 0 0)`;
         divider.style.left = `${percent}%`;
         handle.style.left = `${percent}%`;
       };
 
-      card.addEventListener('dragstart', (event) => {
-        event.preventDefault();
-      });
-
-      const startDrag = (event) => {
-        event.preventDefault();
+      const startPointer = (event) => {
         activePointerId = event.pointerId;
-        card.classList.add('is-dragging');
-        card.setPointerCapture(event.pointerId);
-        setPosition(event.clientX);
+        startX = event.clientX;
+        startY = event.clientY;
+        isDragging = false;
+        dragLocked = false;
       };
 
-      const moveDrag = (event) => {
+      const movePointer = (event) => {
         if (activePointerId !== event.pointerId) return;
+
+        const dx = event.clientX - startX;
+        const dy = event.clientY - startY;
+
+        if (!dragLocked) {
+          if (Math.abs(dx) > 8 || Math.abs(dy) > 8) {
+            dragLocked = true;
+
+            if (Math.abs(dx) > Math.abs(dy)) {
+              isDragging = true;
+              card.classList.add('is-dragging');
+              card.setPointerCapture(event.pointerId);
+            } else {
+              activePointerId = null;
+              return;
+            }
+          }
+        }
+
+        if (!isDragging) return;
+
         event.preventDefault();
         setPosition(event.clientX);
       };
 
-      const stopDrag = (event) => {
+      const endPointer = (event) => {
         if (activePointerId !== event.pointerId) return;
-        card.classList.remove('is-dragging');
-        if (card.hasPointerCapture(event.pointerId)) {
+
+        if (isDragging && card.hasPointerCapture(event.pointerId)) {
           card.releasePointerCapture(event.pointerId);
         }
+
+        card.classList.remove('is-dragging');
         activePointerId = null;
+        isDragging = false;
+        dragLocked = false;
       };
 
-      card.addEventListener('pointerdown', startDrag);
-      card.addEventListener('pointermove', moveDrag);
-      card.addEventListener('pointerup', stopDrag);
-      card.addEventListener('pointercancel', stopDrag);
+      card.addEventListener('pointerdown', startPointer, { passive: true });
+      card.addEventListener('pointermove', movePointer, { passive: false });
+      card.addEventListener('pointerup', endPointer);
+      card.addEventListener('pointercancel', endPointer);
       card.addEventListener('lostpointercapture', () => {
         activePointerId = null;
+        isDragging = false;
+        dragLocked = false;
         card.classList.remove('is-dragging');
       });
 
