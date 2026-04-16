@@ -427,24 +427,24 @@
     }
     .fade-left{left:0;background:linear-gradient(90deg, rgba(7,11,22,1) 0%, rgba(7,11,22,0) 100%)}
     .fade-right{right:0;background:linear-gradient(270deg, rgba(7,11,22,1) 0%, rgba(7,11,22,0) 100%)}
-   .marquee{
-   overflow:hidden;
-   width:100%;
-   }
+    .marquee{
+      overflow:hidden;
+      width:100%;
+    }
 
-  .marquee-track{
-  display:flex;
-  width:max-content;
-  gap:18px;
-  padding:6px 18px;
-  will-change:transform;
-  animation:scrollLeft 120s linear infinite;
-  }
+    .marquee-track{
+      display:flex;
+      width:max-content;
+      gap:18px;
+      padding:6px 18px;
+      will-change:transform;
+      animation:scrollLeft 120s linear infinite;
+    }
 
-  /* pause on hover (good UX) */
-  .slider-shell:hover .marquee-track{
-  animation-play-state:paused;
-  }
+    .slider-shell:hover .marquee-track{
+      animation-play-state:paused;
+    }
+
     .thumb,
     .thumb-card,
     .extra-card,
@@ -1403,7 +1403,7 @@
 
       const sliderImages = validPortfolio.length ? validPortfolio : portfolioImages.slice(0, 8);
 
-     marqueeTrack.innerHTML = '';
+      marqueeTrack.innerHTML = '';
       [...sliderImages, ...sliderImages].forEach((path) => {
         marqueeTrack.appendChild(createThumb(path));
       });
@@ -1427,52 +1427,52 @@
       bindReveal();
     }
 
-    bindReveal();
-    buildPortfolio();
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-  const el = document.getElementById("rotatingTitle");
-  if (!el) return;
+    document.addEventListener('DOMContentLoaded', () => {
+      bindReveal();
+      buildPortfolio();
 
-  const texts = [
-    "Low clicks? It starts with your thumbnail.",
-    "Clean thumbnails designed to grab attention fast.",
-    "A better thumbnail makes the video feel more clickable.",
-    "Clean thumbnails that still look strong on mobile."
-  ];
+      const el = document.getElementById('rotatingTitle');
+      if (!el) return;
 
-  let textIndex = 0;
-  let charIndex = 0;
-  let isDeleting = false;
+      const texts = [
+        'Low clicks? It starts with your thumbnail.',
+        'Clean thumbnails designed to grab attention fast.',
+        'A better thumbnail makes the video feel more clickable.',
+        'Clean thumbnails that still look strong on mobile.'
+      ];
 
-  function typeLoop() {
-    const currentText = texts[textIndex];
+      let textIndex = 0;
+      let charIndex = 0;
+      let isDeleting = false;
 
-    if (isDeleting) {
-      charIndex--;
-      el.textContent = currentText.slice(0, charIndex);
-    } else {
-      charIndex++;
-      el.textContent = currentText.slice(0, charIndex);
-    }
+      function typeLoop() {
+        const currentText = texts[textIndex];
 
-    let speed = isDeleting ? 28 : 52;
+        if (isDeleting) {
+          charIndex--;
+          el.textContent = currentText.slice(0, charIndex);
+        } else {
+          charIndex++;
+          el.textContent = currentText.slice(0, charIndex);
+        }
 
-    if (!isDeleting && charIndex === currentText.length) {
-      speed = 1800;
-      isDeleting = true;
-    } else if (isDeleting && charIndex === 0) {
-      isDeleting = false;
-      textIndex = (textIndex + 1) % texts.length;
-      speed = 260;
-    }
+        let speed = isDeleting ? 28 : 52;
 
-    setTimeout(typeLoop, speed);
-  }
+        if (!isDeleting && charIndex === currentText.length) {
+          speed = 1800;
+          isDeleting = true;
+        } else if (isDeleting && charIndex === 0) {
+          isDeleting = false;
+          textIndex = (textIndex + 1) % texts.length;
+          speed = 260;
+        }
 
-  el.textContent = "";
-  typeLoop();
-});
-</script>
+        setTimeout(typeLoop, speed);
+      }
+
+      el.textContent = '';
+      typeLoop();
+    });
+  </script>
 </body>
 </html>
