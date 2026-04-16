@@ -1429,56 +1429,50 @@
 
     bindReveal();
     buildPortfolio();
-  </script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const el = document.getElementById("rotatingTitle");
+  if (!el) return;
 
-  <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const el = document.getElementById("rotatingTitle");
-    if (!el) return;
+  const texts = [
+    "Low clicks? It starts with your thumbnail.",
+    "Clean thumbnails designed to grab attention fast.",
+    "A better thumbnail makes the video feel more clickable.",
+    "Clean thumbnails that still look strong on mobile."
+  ];
 
-    const texts = [
-      "Low clicks? Your thumbnail needs a stronger first impression.",
-      "Clean thumbnails designed to grab attention fast.",
-      "A better thumbnail makes the video feel more clickable.",
-      "Clean thumbnails that still look strong on mobile."
-    ];
+  let textIndex = 0;
+  let charIndex = 0;
+  let isDeleting = false;
 
-    let textIndex = 0;
-    let charIndex = texts[0].length;
-    let deleting = false;
+  function typeLoop() {
+    const currentText = texts[textIndex];
 
-    function tick() {
-      const current = texts[textIndex];
-
-      if (!deleting) {
-        charIndex++;
-        el.textContent = current.slice(0, charIndex);
-
-        if (charIndex < current.length) {
-          setTimeout(tick, 52);
-        } else {
-          deleting = true;
-          setTimeout(tick, 2200);
-        }
-      } else {
-        charIndex--;
-        el.textContent = current.slice(0, charIndex);
-
-        if (charIndex > 0) {
-          setTimeout(tick, 28);
-        } else {
-          deleting = false;
-          textIndex = (textIndex + 1) % texts.length;
-          setTimeout(tick, 240);
-        }
-      }
+    if (isDeleting) {
+      charIndex--;
+      el.textContent = currentText.slice(0, charIndex);
+    } else {
+      charIndex++;
+      el.textContent = currentText.slice(0, charIndex);
     }
 
-    setTimeout(() => {
-      deleting = true;
-      tick();
-    }, 2200);
-  });
-  </script>
+    let speed = isDeleting ? 28 : 52;
+
+    if (!isDeleting && charIndex === currentText.length) {
+      speed = 1800;
+      isDeleting = true;
+    } else if (isDeleting && charIndex === 0) {
+      isDeleting = false;
+      textIndex = (textIndex + 1) % texts.length;
+      speed = 260;
+    }
+
+    setTimeout(typeLoop, speed);
+  }
+
+  el.textContent = "";
+  typeLoop();
+});
+</script>
 </body>
 </html>
