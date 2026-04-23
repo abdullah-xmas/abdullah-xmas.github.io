@@ -114,9 +114,9 @@
         position: relative;
         z-index: 1;
       }
-    .content-section{
-        content-visibility:auto;
-        contain-intrinsic-size:1px 900px;
+      .content-section {
+        content-visibility: auto;
+        contain-intrinsic-size: 1px 900px;
       }
       .thumb,
       .thumb-card,
@@ -125,8 +125,8 @@
       .review-card,
       .process-card,
       .faq-item,
-      .contact-item{
-        contain:layout paint;
+      .contact-item {
+        contain: layout paint;
       }
       .glass {
         background: linear-gradient(180deg, rgba(255, 255, 255, 0.065), rgba(255, 255, 255, 0.035));
@@ -491,7 +491,6 @@
         padding: 6px 18px;
         will-change: transform;
         animation: scrollLeft 80s linear infinite;
-        
       }
       .slider-shell:hover .marquee-track {
         animation-play-state: paused;
@@ -1297,7 +1296,9 @@
         <div class="section-header reveal portfolio-header">
           <span class="section-kicker">Portfolio</span>
           <h2 class="section-title portfolio-title">
-            More clicks start with <br /><span class="typed-wrapper" id="typedText">cleaner design.</span>
+            More clicks start with
+            <br />
+            <span class="typed-wrapper" id="typedText">cleaner design.</span>
           </h2>
           <p class="section-subtitle portfolio-subtitle">
             Scroll-stopping designs crafted to grab attention and drive clicks.
@@ -1339,7 +1340,8 @@
           <span class="section-kicker">Creator Feedback</span>
           <h2 class="section-title">Trusted feedback from creators I’ve worked with</h2>
           <p class="section-subtitle">
-           Clear, direct client feedback highlighting what drives clicks: clarity, strong presentation, and instant appeal.
+            Clear, direct client feedback highlighting what drives clicks: clarity, strong presentation, and instant
+            appeal.
           </p>
         </div>
 
@@ -1347,7 +1349,8 @@
           <article class="review-card reveal">
             <div class="review-stars">★★★★★</div>
             <p class="review-quote">
-              "Abdullah delivered visually strong, professional designs that matched our brand perfectly. Great communication, fast delivery highly recommended."
+              "Abdullah delivered visually strong, professional designs that matched our brand perfectly. Great
+              communication, fast delivery highly recommended."
             </p>
             <div class="review-top">
               <img src="reviews/sabri.webp" class="review-avatar" />
@@ -1364,7 +1367,8 @@
           <article class="review-card reveal">
             <div class="review-stars">★★★★★</div>
             <p class="review-quote">
-              "He quickly understood the idea and transformed it into a cleaner, more clickable design the difference is clear."
+              "He quickly understood the idea and transformed it into a cleaner, more clickable design the difference is
+              clear."
             </p>
             <div class="review-top">
               <img src="reviews/jack.webp" class="review-avatar" />
@@ -1398,7 +1402,10 @@
           <article class="review-card reveal">
             <div class="review-stars">★★★★★</div>
             <p class="review-quote">
-              "Working with Abdullah was amazing. I struggled for years with YouTube traffic, mainly because my thumbnails weren’t optimized. Abdullah completely changed that. His professionalism and attention to detail, especially understanding my channel, made a huge difference. Highly recommended—I’ll definitely work with him again."
+              "Working with Abdullah was amazing. I struggled for years with YouTube traffic, mainly because my
+              thumbnails weren’t optimized. Abdullah completely changed that. His professionalism and attention to
+              detail, especially understanding my channel, made a huge difference. Highly recommended—I’ll definitely
+              work with him again."
             </p>
             <div class="review-top">
               <img src="reviews/solazzo.webp" class="review-avatar" />
@@ -1430,9 +1437,7 @@
         <div class="section-header reveal">
           <span class="section-kicker">Process</span>
           <h2 class="section-title">Simple process, smooth communication</h2>
-          <p class="section-subtitle">
-            A simple, streamlined process—from idea to final thumbnail without friction..
-          </p>
+          <p class="section-subtitle">A simple, streamlined process—from idea to final thumbnail without friction..</p>
         </div>
         <div class="process-grid">
           <article class="process-card reveal">
@@ -1517,7 +1522,9 @@
         <div class="section-header reveal">
           <span class="section-kicker">Contact</span>
           <h2 class="section-title">Ready to make your videos impossible to ignore?</h2>
-          <p class="section-subtitle">Choose the easiest way to reach me let’s start your next high-converting thumbnail..</p>
+          <p class="section-subtitle">
+            Choose the easiest way to reach me let’s start your next high-converting thumbnail..
+          </p>
         </div>
         <div class="contact-card glass reveal">
           <div class="contact-item">
@@ -1560,14 +1567,17 @@
       const extraGrid = document.getElementById("extraGrid");
       const beforeAfterGrid = document.getElementById("beforeAfterGrid");
 
-      const revealObserver = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("show");
-            revealObserver.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.12 });
+      const revealObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("show");
+              revealObserver.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.12 },
+      );
 
       function bindReveal(scope = document) {
         scope.querySelectorAll(".reveal").forEach((el, index) => {
@@ -1638,12 +1648,16 @@
         images.forEach((img) => {
           img.setAttribute("draggable", "false");
           img.addEventListener("dragstart", (event) => event.preventDefault());
-          img.addEventListener("error", () => {
-            if (!hasError) {
-              hasError = true;
-              card.remove();
-            }
-          }, { once: true });
+          img.addEventListener(
+            "error",
+            () => {
+              if (!hasError) {
+                hasError = true;
+                card.remove();
+              }
+            },
+            { once: true },
+          );
         });
 
         const setPosition = (clientX) => {
@@ -1743,7 +1757,11 @@
       document.addEventListener("keydown", (e) => {
         if (e.key === "Escape") closeLightbox();
         const activeMedia = document.activeElement;
-        if ((e.key === "Enter" || e.key === " ") && activeMedia && activeMedia.matches(".thumb-card, .extra-card, .thumb")) {
+        if (
+          (e.key === "Enter" || e.key === " ") &&
+          activeMedia &&
+          activeMedia.matches(".thumb-card, .extra-card, .thumb")
+        ) {
           e.preventDefault();
           const img = activeMedia.querySelector("img");
           if (img) openLightbox(img.src);
@@ -1804,7 +1822,7 @@
         marquee.addEventListener("pointercancel", endDrag);
       }
 
-function buildInitialPortfolio() {
+      function buildInitialPortfolio() {
         if (marqueeTrack) {
           marqueeTrack.innerHTML = "";
           const sliderImages = portfolioImages.slice(0, 8);
@@ -1845,14 +1863,17 @@ function buildInitialPortfolio() {
 
       function lazyBuildOnView(target, builder, rootMargin = "300px") {
         if (!target) return;
-        const io = new IntersectionObserver((entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              builder();
-              io.disconnect();
-            }
-          });
-        }, { rootMargin });
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                builder();
+                io.disconnect();
+              }
+            });
+          },
+          { rootMargin },
+        );
         io.observe(target);
       }
 
@@ -1864,10 +1885,12 @@ function buildInitialPortfolio() {
         lazyBuildOnView(beforeAfterGrid, buildBeforeAfter, "400px");
 
         document.querySelectorAll(".review-avatar").forEach((img) => {
-          img.addEventListener("error", () => {
-            const name = img.dataset.name || img.alt || "Creator";
-            const letter = (name.trim()[0] || "C").toUpperCase();
-            const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
+          img.addEventListener(
+            "error",
+            () => {
+              const name = img.dataset.name || img.alt || "Creator";
+              const letter = (name.trim()[0] || "C").toUpperCase();
+              const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
               <defs>
                 <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
                   <stop offset="0%" stop-color="#2b92b8"/>
@@ -1878,8 +1901,10 @@ function buildInitialPortfolio() {
               <text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle"
                 font-family="Arial, sans-serif" font-size="54" font-weight="700" fill="white">${letter}</text>
             </svg>`;
-            img.src = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(svg);
-          }, { once: true });
+              img.src = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(svg);
+            },
+            { once: true },
+          );
         });
         const typedEl = document.getElementById("typedText");
         if (typedEl) {
