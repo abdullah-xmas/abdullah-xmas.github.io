@@ -10,8 +10,8 @@
     <meta name="author" content="Abdullah Al Mamun">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://abdullahthumbnails.xyz/">
-    <link rel="icon" type="image/png" sizes="48x48" href="favicon.png">
-    <link rel="apple-touch-icon" href="favicon.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="elements/Logo.png">
+    <link rel="apple-touch-icon" href="elements/Logo.png">
     <meta property="og:title" content="High CTR YouTube Thumbnail Designer | Portfolio">
     <meta property="og:description" content="Clean, high-impact YouTube thumbnails designed for clear ideas, stronger first impressions, and better viewer attention.">
     <meta property="og:type" content="website">
@@ -112,6 +112,14 @@
             background: linear-gradient(90deg, #8bdcff 0%, #a78bfa 100%);
             z-index: 120;
             box-shadow: 0 0 18px rgba(139, 220, 255, 0.45);
+        }
+
+
+        a:focus-visible,
+        button:focus-visible,
+        summary:focus-visible {
+            outline: 2px solid rgba(139, 220, 255, 0.85);
+            outline-offset: 3px;
         }
 
         img {
@@ -585,7 +593,11 @@
             font-weight: 800;
             font-size: 0.93rem;
             border: 1px solid var(--line);
-            transition: 0.26s ease;
+            transition:
+                transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.45s ease,
+                background 0.45s ease,
+                border-color 0.45s ease;
             white-space: nowrap;
         }
 
@@ -845,7 +857,7 @@
 
         /* premium motion */
         .hero-visual {
-            animation: softFloat 5.5s ease-in-out infinite;
+            animation: softFloat 7.5s ease-in-out infinite;
         }
 
         @keyframes softFloat {
@@ -862,6 +874,7 @@
 
         .btn,
         .btn-outline,
+        .btn-whatsapp,
         .nav-cta {
             position: relative;
             overflow: hidden;
@@ -869,6 +882,7 @@
 
         .btn::after,
         .btn-outline::after,
+        .btn-whatsapp::after,
         .nav-cta::after {
             content: "";
             position: absolute;
@@ -878,11 +892,12 @@
             width: 42%;
             transform: rotate(18deg);
             background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.65s ease;
+            transition: left 0.95s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .btn:hover::after,
         .btn-outline:hover::after,
+        .btn-whatsapp:hover::after,
         .nav-cta:hover::after {
             left: 125%;
         }
@@ -1398,7 +1413,7 @@
         }
 
         .faq-item details[open]>summary::after {
-            content: "&minus;";
+            content: "−";
             color: var(--accent);
             border-color: rgba(139, 220, 255, 0.3);
         }
@@ -1455,28 +1470,25 @@
             min-height: 52px;
             padding: 14px 22px;
             border-radius: 18px;
-            border: 1px solid rgba(37, 211, 102, 0.26);
-            background: linear-gradient(180deg, #1db954 0%, #129c45 100%);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: rgba(255, 255, 255, 0.055);
             color: #fff;
             font-weight: 800;
             letter-spacing: -0.02em;
-            box-shadow:
-                0 14px 32px rgba(18, 156, 69, 0.22),
-                inset 0 1px 0 rgba(255, 255, 255, 0.12);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.16);
             transition:
-                transform 0.22s ease,
-                box-shadow 0.22s ease,
-                border-color 0.22s ease,
-                filter 0.22s ease;
+                transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+                background 0.45s ease,
+                border-color 0.45s ease,
+                box-shadow 0.45s ease;
         }
 
         .btn-whatsapp:hover {
-            transform: translateY(-2px);
-            box-shadow:
-                0 18px 38px rgba(18, 156, 69, 0.28),
-                inset 0 1px 0 rgba(255, 255, 255, 0.14);
-            border-color: rgba(37, 211, 102, 0.38);
-            filter: saturate(1.03);
+            transform: translateY(-3px);
+            background: rgba(255, 255, 255, 0.075);
+            border-color: rgba(139, 220, 255, 0.2);
+            box-shadow: 0 20px 48px rgba(0, 0, 0, 0.24);
+            filter: none;
         }
 
         .btn-whatsapp .icon {
@@ -1488,6 +1500,12 @@
 
         .btn-whatsapp .icon svg {
             stroke: #fff;
+        }
+
+        .btn-whatsapp .element-logo-icon,
+        .btn-whatsapp span {
+            position: relative;
+            z-index: 1;
         }
 
         .safe-note {
@@ -1729,30 +1747,72 @@
         }
 
         /* &#9472;&#9472; REVEAL &#9472;&#9472; */
+
+        /* Premium motion polish */
         .reveal {
             opacity: 0;
-            transform: translateY(14px);
+            transform: translate3d(0, 34px, 0) scale(0.98);
             transition:
-                opacity 0.62s ease,
-                transform 0.62s ease;
+                opacity 1.25s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 1.25s cubic-bezier(0.16, 1, 0.3, 1);
             will-change: opacity, transform;
         }
 
         .reveal.show {
             opacity: 1;
-            transform: translateY(0);
+            transform: translate3d(0, 0, 0) scale(1);
         }
 
-        .reveal.fade-left,
-        .reveal.fade-right,
+        .reveal.fade-left {
+            transform: translate3d(-38px, 24px, 0) scale(0.98);
+        }
+
+        .reveal.fade-right {
+            transform: translate3d(38px, 24px, 0) scale(0.98);
+        }
+
         .reveal.zoom-in {
-            transform: translateY(14px);
+            transform: translate3d(0, 24px, 0) scale(0.94);
         }
 
         .reveal.fade-left.show,
         .reveal.fade-right.show,
         .reveal.zoom-in.show {
-            transform: translateY(0);
+            transform: translate3d(0, 0, 0) scale(1);
+        }
+
+        .thumb-card,
+        .process-card,
+        .review-proof,
+        .faq-item,
+        .proof-cell,
+        .ci,
+        .ba-card {
+            transform: translateZ(0);
+            backface-visibility: hidden;
+        }
+
+        .btn,
+        .btn-outline,
+        .btn-whatsapp,
+        .nav-cta,
+        .load-more {
+            transform: translateZ(0);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: smooth;
+            }
+
+            .reveal {
+                transition-duration: 0.7s !important;
+            }
+
+            .marquee-track,
+            .hero-visual {
+                animation-play-state: running !important;
+            }
         }
 
         .thumb-card,
@@ -1880,6 +1940,20 @@
 
         .ci small .icon {
             color: var(--accent);
+        }
+
+        .element-logo-icon {
+            width: 22px;
+            height: 22px;
+            display: inline-block;
+            object-fit: contain;
+            flex: 0 0 auto;
+            border-radius: 5px;
+        }
+
+        .ci .element-logo-icon {
+            width: 20px;
+            height: 20px;
         }
 
         .load-more .icon {
@@ -2341,7 +2415,7 @@
         }
 
         .mini-trust-row span::before {
-            content: "&#10003;";
+            content: "✓";
             color: var(--accent);
             font-weight: 900;
         }
@@ -2390,6 +2464,120 @@
             opacity: 1 !important;
             filter: none !important;
         }
+
+        /* ── LIGHTBOX (hidden until portfolio image is clicked) ── */
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            z-index: 110;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            background: rgba(3, 6, 12, 0.82);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+        }
+
+        .lightbox.open {
+            display: flex;
+        }
+
+        .lightbox-img {
+            width: min(1120px, 92vw);
+            max-height: 82vh;
+            object-fit: contain;
+            border-radius: 18px;
+            background: var(--bg-3);
+            border: 1px solid var(--line-strong);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .lb-close,
+        .lb-prev,
+        .lb-next {
+            position: absolute;
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            background: rgba(8, 12, 20, 0.78);
+            color: #fff;
+            cursor: pointer;
+            display: grid;
+            place-items: center;
+            transition:
+                transform 0.2s ease,
+                background 0.2s ease,
+                border-color 0.2s ease;
+        }
+
+        .lb-close {
+            top: 18px;
+            right: 18px;
+            width: 46px;
+            height: 46px;
+            border-radius: 15px;
+            font-size: 1.5rem;
+        }
+
+        .lb-prev,
+        .lb-next {
+            top: 50%;
+            width: 48px;
+            height: 58px;
+            border-radius: 16px;
+            font-size: 1.9rem;
+            transform: translateY(-50%);
+        }
+
+        .lb-prev {
+            left: 18px;
+        }
+
+        .lb-next {
+            right: 18px;
+        }
+
+        .lb-close:hover,
+        .lb-prev:hover,
+        .lb-next:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--line-strong);
+        }
+
+        .lb-counter {
+            position: absolute;
+            left: 50%;
+            bottom: 18px;
+            transform: translateX(-50%);
+            padding: 8px 13px;
+            border-radius: 999px;
+            color: var(--muted-2);
+            background: rgba(8, 12, 20, 0.78);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.82rem;
+            font-weight: 700;
+        }
+
+        @media (max-width: 760px) {
+            .lightbox {
+                padding: 16px;
+            }
+
+            .lightbox-img {
+                width: 100%;
+                max-height: 78vh;
+                border-radius: 14px;
+            }
+
+            .lb-close {
+                top: 12px;
+                right: 12px;
+            }
+
+            .lb-counter {
+                bottom: 12px;
+            }
+        }
+
     </style>
 </head>
 
@@ -2401,10 +2589,7 @@
             <nav class="nav">
                 <div class="brand">
                     <div class="brand-mark">
-                        <img src="Logo/1.webp" alt="Abdullah Thumbnails Logo" onerror="
-                  this.parentElement.style.background =
-                    'linear-gradient(135deg,rgba(139,220,255,.9),rgba(167,139,250,.85))'
-                ">
+                        <img src="elements/Logo.png" alt="Abdullah Thumbnails Logo" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg,rgba(139,220,255,.9),rgba(167,139,250,.85))';" loading="lazy">
                     </div>
                     <div class="brand-text">
                         <strong>Abdullah Al Mamun</strong>
@@ -2457,7 +2642,7 @@
                 <div class="hero-actions">
                     <a href="#portfolio" class="btn">
                         <span class="icon">
-                            <svg viewbox="0 0 24 24">
+                            <svg viewBox="0 0 24 24">
                                 <path d="M3 5h18M3 12h18M3 19h18"></path>
                             </svg>
                         </span>
@@ -2465,7 +2650,7 @@
                     </a>
                     <a href="https://www.fiverr.com/s/WEy43KL" target="_blank" rel="noopener" class="btn-outline">
                         <span class="icon">
-                            <svg viewbox="0 0 24 24">
+                            <svg viewBox="0 0 24 24">
                                 <path d="M5 12h14"></path>
                                 <path d="m13 6 6 6-6 6"></path>
                             </svg>
@@ -2475,7 +2660,7 @@
                 </div>
                 <div class="trust-note">
                     <span class="icon">
-                        <svg viewbox="0 0 24 24">
+                        <svg viewBox="0 0 24 24">
                             <path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z"></path>
                         </svg>
                     </span>
@@ -2486,7 +2671,7 @@
                 <div class="hero-points">
                     <div class="point">
                         <div class="point-icon">
-                            <svg viewbox="0 0 24 24">
+                            <svg viewBox="0 0 24 24">
                                 <circle cx="12" cy="12" r="8"></circle>
                                 <circle cx="12" cy="12" r="3"></circle>
                                 <path d="M12 2v3M12 19v3M2 12h3M19 12h3"></path>
@@ -2499,7 +2684,7 @@
                     </div>
                     <div class="point">
                         <div class="point-icon">
-                            <svg viewbox="0 0 24 24">
+                            <svg viewBox="0 0 24 24">
                                 <path d="M13 2 4 14h7l-1 8 10-13h-7z"></path>
                             </svg>
                         </div>
@@ -2510,7 +2695,7 @@
                     </div>
                     <div class="point">
                         <div class="point-icon">
-                            <svg viewbox="0 0 24 24">
+                            <svg viewBox="0 0 24 24">
                                 <rect x="7" y="2" width="10" height="20" rx="2"></rect>
                                 <path d="M11 18h2"></path>
                             </svg>
@@ -2522,7 +2707,7 @@
                     </div>
                     <div class="point">
                         <div class="point-icon">
-                            <svg viewbox="0 0 24 24">
+                            <svg viewBox="0 0 24 24">
                                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
                                 <path d="m9 12 2 2 4-4"></path>
                             </svg>
@@ -2572,7 +2757,7 @@
                 <div class="load-more-wrap">
                     <button class="load-more" id="loadMoreBtn">
                         <span class="icon">
-                            <svg viewbox="0 0 24 24">
+                            <svg viewBox="0 0 24 24">
                                 <path d="M12 5v14"></path>
                                 <path d="m19 12-7 7-7-7"></path>
                             </svg>
@@ -2588,12 +2773,6 @@
 
     <section id="reviews" style="background: linear-gradient(180deg, rgba(139, 220, 255, 0.025) 0%, transparent 100%)">
         <div class="container">
-            <div class="s-header reveal">
-                <div class="s-kicker">Review</div>
-                <h2 class="s-title">What My Clients Say About Working With Me</h2>
-                <p class="s-sub">.</p>
-            </div>
-
             <div class="proof-strip reveal">
                 <div class="proof-cell">
                     <strong>Trusted by 150+</strong>
@@ -2613,15 +2792,21 @@
                 </div>
             </div>
 
+            <div class="s-header reveal">
+                <div class="s-kicker">Review</div>
+                <h2 class="s-title">What My Clients Say About Working With Me</h2>
+                <p class="s-sub">Real client feedback from creators who needed clean, clickable, upload-ready thumbnails.</p>
+            </div>
+
             <div class="reviews-layout">
                 <div class="review-grid">
                     <a class="review-proof" href="https://www.youtube.com/@jackpembrook/videos" target="_blank" rel="noopener noreferrer" aria-label="Open Jack Pembrook YouTube channel">
                         <div class="rp-top">
-                            <img class="rp-avatar" src="reviews/jack.webp" alt="Jack Pembrook avatar" onerror="this.src = makeAvatar('J')">
+                            <img class="rp-avatar" src="reviews/jack.webp" alt="Jack Pembrook avatar" onerror="this.src = makeAvatar('J')" loading="lazy">
                             <div class="rp-meta">
                                 <div class="rp-name">
                                     Jack Pembrook
-                                    <img class="verify-badge" src="reviews/verified-badge.png" alt="Verified" onerror="this.style.display = 'none'">
+                                    <img class="verify-badge" src="reviews/verified-badge.png" alt="Verified" onerror="this.style.display = 'none'" loading="lazy">
                                 </div>
                                 <div class="rp-role">YouTuber &middot; 1.69M Subscribers</div>
                                 <div class="rp-niche">Storytelling / Entertainment niche</div>
@@ -2637,11 +2822,11 @@
 
                     <a class="review-proof" href="https://www.youtube.com/@SabriSubyOfficial/videos" target="_blank" rel="noopener noreferrer" aria-label="Open Sabri Suby YouTube channel">
                         <div class="rp-top">
-                            <img class="rp-avatar" src="reviews/sabri.webp" alt="Sabri Suby avatar" onerror="this.src = makeAvatar('S')">
+                            <img class="rp-avatar" src="reviews/sabri.webp" alt="Sabri Suby avatar" onerror="this.src = makeAvatar('S')" loading="lazy">
                             <div class="rp-meta">
                                 <div class="rp-name">
                                     Sabri Suby
-                                    <img class="verify-badge" src="reviews/verified-badge.png" alt="Verified" onerror="this.style.display = 'none'">
+                                    <img class="verify-badge" src="reviews/verified-badge.png" alt="Verified" onerror="this.style.display = 'none'" loading="lazy">
                                 </div>
                                 <div class="rp-role">YouTuber &middot; 448K Subscribers</div>
                                 <div class="rp-niche">Business / Marketing niche</div>
@@ -2657,11 +2842,11 @@
 
                     <a class="review-proof" href="https://www.youtube.com/@vfxsolazzo/videos" target="_blank" rel="noopener noreferrer" aria-label="Open Solazzo YouTube channel">
                         <div class="rp-top">
-                            <img class="rp-avatar" src="reviews/solazzo.webp" alt="Solazzo avatar" onerror="this.src = makeAvatar('S')">
+                            <img class="rp-avatar" src="reviews/solazzo.webp" alt="Solazzo avatar" onerror="this.src = makeAvatar('S')" loading="lazy">
                             <div class="rp-meta">
                                 <div class="rp-name">
                                     Solazzo
-                                    <img class="verify-badge" src="reviews/verified-badge.png" alt="Verified" onerror="this.style.display = 'none'">
+                                    <img class="verify-badge" src="reviews/verified-badge.png" alt="Verified" onerror="this.style.display = 'none'" loading="lazy">
                                 </div>
                                 <div class="rp-role">YouTuber &middot; 12.2K Subscribers</div>
                                 <div class="rp-niche">VFX / Entertainment niche</div>
@@ -2681,11 +2866,11 @@
 
                     <a class="review-proof" href="https://www.youtube.com/@TechSource/videos" target="_blank" rel="noopener noreferrer" aria-label="Open TechSource YouTube channel">
                         <div class="rp-top">
-                            <img class="rp-avatar" src="reviews/techsource.webp" alt="TechSource avatar" onerror="this.src = makeAvatar('T')">
+                            <img class="rp-avatar" src="reviews/techsource.webp" alt="TechSource avatar" onerror="this.src = makeAvatar('T')" loading="lazy">
                             <div class="rp-meta">
                                 <div class="rp-name">
                                     TechSource
-                                    <img class="verify-badge" src="reviews/verified-badge.png" alt="Verified" onerror="this.style.display = 'none'">
+                                    <img class="verify-badge" src="reviews/verified-badge.png" alt="Verified" onerror="this.style.display = 'none'" loading="lazy">
                                 </div>
                                 <div class="rp-role">YouTuber &middot; 4.07M Subscribers</div>
                                 <div class="rp-niche">Tech / Product niche</div>
@@ -2861,31 +3046,15 @@
                     </div>
                     <div class="contact-btns">
                         <a class="btn" href="https://www.fiverr.com/s/WEy43KL" target="_blank" rel="noopener noreferrer">
-                            <span class="icon">
-                                <svg viewbox="0 0 24 24">
-                                    <path d="M6 2h12l3 7-9 13L3 9z"></path>
-                                    <path d="M3 9h18"></path>
-                                    <path d="m9 9 3 13 3-13"></path>
-                                </svg>
-                            </span>
+                            <img class="element-logo-icon" src="elements/Fiverr.png" alt="Fiverr" loading="lazy">
                             Secure Fiverr Order
                         </a>
                         <a class="btn-whatsapp" href="https://wa.me/8801600106114" target="_blank" rel="noopener noreferrer">
-                            <span class="icon">
-                                <svg viewbox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M20.5 11.2A8.7 8.7 0 0 1 7.6 18.8L3 20l1.2-4.4A8.7 8.7 0 1 1 20.5 11.2Z"></path>
-                                    <path d="M8.7 9.2c.5 1.9 2 3.4 3.9 3.9"></path>
-                                </svg>
-                            </span>
-                            Message Me on WhatsApp
+                            <img class="element-logo-icon" src="elements/whatsapp.png" alt="WhatsApp" loading="lazy">
+                            <span>Message Me on WhatsApp</span>
                         </a>
                         <a class="btn-outline open-contact-form" href="#email-contact">
-                            <span class="icon">
-                                <svg viewbox="0 0 24 24">
-                                    <path d="M4 4h16v16H4z"></path>
-                                    <path d="m4 7 8 6 8-6"></path>
-                                </svg>
-                            </span>
+                            <img class="element-logo-icon" src="elements/Mail.png" alt="Email" loading="lazy">
                             Send Project Details
                         </a>
                     </div>
@@ -2893,7 +3062,7 @@
                     <div class="offer-row">
                         <div class="offer-pill">
                             <span class="icon">
-                                <svg viewbox="0 0 24 24">
+                                <svg viewBox="0 0 24 24">
                                     <path d="M20 6 9 17l-5-5"></path>
                                 </svg>
                             </span>
@@ -2901,7 +3070,7 @@
                         </div>
                         <div class="offer-pill">
                             <span class="icon">
-                                <svg viewbox="0 0 24 24">
+                                <svg viewBox="0 0 24 24">
                                     <path d="M3 12h18"></path>
                                     <path d="m12 3 9 9-9 9"></path>
                                 </svg>
@@ -2910,7 +3079,7 @@
                         </div>
                         <div class="offer-pill">
                             <span class="icon">
-                                <svg viewbox="0 0 24 24">
+                                <svg viewBox="0 0 24 24">
                                     <path d="M12 20h9"></path>
                                     <path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"></path>
                                 </svg>
@@ -2954,49 +3123,6 @@
                     </div>
                 </div>
             </div>
-            <div class="contact-card reveal">
-                <div class="ci">
-                    <small>
-                        <span class="icon icon-sm">
-                            <svg viewbox="0 0 24 24">
-                                <path d="M4 4h16v16H4z"></path>
-                                <path d="m4 7 8 6 8-6"></path>
-                            </svg>
-                        </span>
-                        Email
-                    </small>
-                    <a href="#email-contact" class="open-contact-form">Open contact form</a>
-                    <p>Best for detailed briefs and file sharing</p>
-                </div>
-                <div class="ci">
-                    <small>
-                        <span class="icon icon-sm">
-                            <svg viewbox="0 0 24 24">
-                                <path d="M21 11.5a8.5 8.5 0 0 1-12.6 7.4L3 21l2.1-5.2A8.5 8.5 0 1 1 21 11.5z"></path>
-                                <path d="M8 9c.5 2 2 3.5 4 4"></path>
-                            </svg>
-                        </span>
-                        WhatsApp
-                    </small>
-                    <a href="https://wa.me/8801600106114" target="_blank" rel="noopener noreferrer">+880 1600 106 114</a>
-                    <p>Best for quick questions and fast replies</p>
-                </div>
-                <div class="ci">
-                    <small>
-                        <span class="icon icon-sm">
-                            <svg viewbox="0 0 24 24">
-                                <path d="M6 2h12l3 7-9 13L3 9z"></path>
-                                <path d="M3 9h18"></path>
-                            </svg>
-                        </span>
-                        Fiverr
-                    </small>
-                    <a href="https://www.fiverr.com/s/WEy43KL" target="_blank" rel="noopener noreferrer">
-                        fiverr.com/s/WEy43KL
-                    </a>
-                    <p>Best for secure order, payment, and delivery</p>
-                </div>
-            </div>
         </div>
     </section>
 
@@ -3012,6 +3138,15 @@
             </form>
         </div>
     </div>
+
+    <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-label="Portfolio thumbnail preview">
+        <button class="lb-close" id="lbClose" type="button" aria-label="Close preview">&times;</button>
+        <button class="lb-prev" id="lbPrev" type="button" aria-label="Previous thumbnail">&#8249;</button>
+        <img class="lightbox-img" id="lbImg" src="" alt="Expanded YouTube thumbnail design preview" loading="lazy">
+        <button class="lb-next" id="lbNext" type="button" aria-label="Next thumbnail">&#8250;</button>
+        <div class="lb-counter" id="lbCounter">1 / 1</div>
+    </div>
+
     <footer>
         <p>
             &copy; 2026
@@ -3200,7 +3335,8 @@
 
         // &#9472;&#9472; AVATAR FALLBACK &#9472;&#9472;
         function makeAvatar(letter) {
-            const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#2b92b8"/><stop offset="100%" stop-color="#4f46e5"/><rect width="128" height="128" rx="64" fill="url(#g)"/><text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle" font-family="Arial,sans-serif" font-size="54" font-weight="700" fill="white">${letter}`;
+            const safeLetter = String(letter || "C").charAt(0).toUpperCase();
+            const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#2b92b8"/><stop offset="100%" stop-color="#4f46e5"/></linearGradient></defs><rect width="128" height="128" rx="64" fill="url(#g)"/><text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle" font-family="Arial,sans-serif" font-size="54" font-weight="700" fill="white">${safeLetter}</text></svg>`;
             return "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(svg);
         }
         document.querySelectorAll(".rp-avatar").forEach((img) => {
@@ -3315,11 +3451,11 @@
             loadMoreBtn.innerHTML = hasMore ?
                 `
             <span class="icon">
-              <svg viewBox="0 0 24 24">
-                <path d="M12 5v14">
-                <path d="m19 12-7 7-7-7">
-              
-            
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 5v14"></path>
+                <path d="m19 12-7 7-7-7"></path>
+              </svg>
+            </span>
             Show More Thumbnails
           ` :
                 "All Thumbnails Loaded";
@@ -3356,6 +3492,59 @@
             appendGrid(LOAD_MORE_COUNT);
         });
 
+
+        // ── PORTFOLIO LIGHTBOX ──
+        const lightbox = document.getElementById("lightbox");
+        const lbImg = document.getElementById("lbImg");
+        const lbClose = document.getElementById("lbClose");
+        const lbPrev = document.getElementById("lbPrev");
+        const lbNext = document.getElementById("lbNext");
+        const lbCounter = document.getElementById("lbCounter");
+
+        function updateLightbox() {
+            if (!lbImg || !lbImages.length) return;
+            lbIdx = (lbIdx + lbImages.length) % lbImages.length;
+            lbImg.src = lbImages[lbIdx];
+            lbImg.alt = `Expanded YouTube thumbnail design sample ${lbIdx + 1} by Abdullah Al Mamun`;
+            if (lbCounter) lbCounter.textContent = `${lbIdx + 1} / ${lbImages.length}`;
+        }
+
+        function openLightbox(idx) {
+            if (!lightbox || !lbImages.length) return;
+            lbIdx = Math.max(0, Math.min(idx, lbImages.length - 1));
+            updateLightbox();
+            lightbox.classList.add("open");
+            lightbox.setAttribute("aria-hidden", "false");
+            document.body.classList.add("menu-open");
+        }
+
+        function closeLightbox() {
+            if (!lightbox) return;
+            lightbox.classList.remove("open");
+            lightbox.setAttribute("aria-hidden", "true");
+            document.body.classList.remove("menu-open");
+            if (lbImg) lbImg.removeAttribute("src");
+        }
+
+        function moveLightbox(step) {
+            if (!lightbox?.classList.contains("open")) return;
+            lbIdx += step;
+            updateLightbox();
+        }
+
+        lbClose?.addEventListener("click", closeLightbox);
+        lbPrev?.addEventListener("click", () => moveLightbox(-1));
+        lbNext?.addEventListener("click", () => moveLightbox(1));
+        lightbox?.addEventListener("click", (e) => {
+            if (e.target === lightbox) closeLightbox();
+        });
+        document.addEventListener("keydown", (e) => {
+            if (!lightbox?.classList.contains("open")) return;
+            if (e.key === "Escape") closeLightbox();
+            if (e.key === "ArrowLeft") moveLightbox(-1);
+            if (e.key === "ArrowRight") moveLightbox(1);
+        });
+
         // &#9472;&#9472; BEFORE / AFTER SLIDER &#9472;&#9472;
         const beforeAfterGrid = document.getElementById("beforeAfterGrid");
         const beforeImages = Array.from({
@@ -3369,10 +3558,10 @@
             const card = document.createElement("article");
             card.className = "ba-card";
             card.innerHTML = `
-    <div class="ba-base"><img src="${beforeSrc}" alt="Before thumbnail design" loading="lazy" decoding="async" draggable="false">
-    <div class="ba-overlay"><img src="${afterSrc}" alt="After thumbnail design" loading="lazy" decoding="async" draggable="false">
-    <div class="ba-divider">
-    <div class="ba-handle" aria-hidden="true">&harr;
+    <div class="ba-base"><img src="${beforeSrc}" alt="Before thumbnail design" loading="lazy" decoding="async" draggable="false"></div>
+    <div class="ba-overlay"><img src="${afterSrc}" alt="After thumbnail design" loading="lazy" decoding="async" draggable="false"></div>
+    <div class="ba-divider" aria-hidden="true"></div>
+    <div class="ba-handle" aria-hidden="true">&harr;</div>
   `;
 
             const overlay = card.querySelector(".ba-overlay");
@@ -3507,6 +3696,7 @@
             emailContactPage.classList.add("open");
             emailContactPage.setAttribute("aria-hidden", "false");
             document.body.style.overflow = "hidden";
+            if (typeof updateBodyLock === "function") updateBodyLock();
 
             const nameField = document.getElementById("contactName");
             if (nameField) setTimeout(() => nameField.focus(), 80);
@@ -3518,6 +3708,7 @@
             emailContactPage.classList.remove("open");
             emailContactPage.setAttribute("aria-hidden", "true");
             document.body.style.overflow = "";
+            if (typeof updateBodyLock === "function") updateBodyLock();
         }
         document
             .querySelectorAll(".open-contact-form")
